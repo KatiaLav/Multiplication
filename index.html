@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Multiplication table</title>
+</head>
+<body>
+	<div></div>
+	<script>
+		"use strict"
+		let numMultiply = parseInt(prompt('Перевіримо табличку множення на ...'))
+		let counterCorrect = 0;
+		let counterNotCorrect = 0;
+
+		class MultChecker {
+			constructor(numMultiply, counterCorrect, counterNotCorrect){
+				// ----опис поля
+				this.numMultiply = numMultiply;
+				this.counterCorrect = counterCorrect;
+				this.counterNotCorrect = counterNotCorrect;
+			}
+			// ----опис методів
+			getGenerate(){
+				return 1 + Math.floor(Math.random() * 10)
+			}
+			getAudit(){
+				let secondNum = this.getGenerate()
+				let userAnswer = parseInt(prompt(`Скільки буде ${this.numMultiply} * ${secondNum} =`))
+					if(userAnswer === (this.numMultiply * secondNum)) 
+					return this.counterCorrect++
+					else alert('Не вірно')
+					return this.counterNotCorrect++
+			}
+			getAnswer(){
+				this.getAudit()
+				document.write(`Правильних відповідей-${this.counterCorrect} <br> Неправельних відповідей-${this.counterNotCorrect}`);
+			}
+		}
+		let multChecker = new MultChecker(numMultiply, counterCorrect, counterNotCorrect)
+		
+		for (let index = 1; index < 2; index++) {
+			multChecker.getAudit()
+		}
+		multChecker.getAnswer()
+
+	</script>
+</body>
+</html>
